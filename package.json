@@ -1,0 +1,25 @@
+{
+  "name": "safe-chat",
+  "version": "1.0.0",
+  "description": "Secure chat with channels",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js"
+  },
+  "keywords": [
+    "Chat",
+    "single",
+    "page",
+    "app",
+    "secure",
+    "authentication"
+  ],
+  "author": "Matilda Bengtsson",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
+}
