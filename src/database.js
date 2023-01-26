@@ -1,30 +1,45 @@
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-/* const users = [
-     {
-          username: "matilda",
-          password: '',
-          id: 1
-     },
-     {
-          username: "kate",
-          password: '',
-          id: 2
-     }
-] */
+import { Low } from 'lowdb'
+import { JSONFile } from 'lowdb/node'
 
-const channels = [{
-     name: 'animals',
-     status: 'public',// public or private
-     messages: [
-          {
-               timeCreated: 'Today',
-               userId: 2 //users.id
+// File path
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const file = join(__dirname, 'db.json')
 
-          }
+// Configure lowdb to write to JSONFile
+const adapter = new JSONFile(file)
+const db = new Low(adapter)
+
+
+await db.read()
+
+/* console.log('The database contains: ', db.data)
+
+if (db.data === null) {
+     db.data = [
+          { name: 'Matilda', password: "hej123" },
+          { name: 'Kate', password: "123hej" }
      ]
-}]
+     await db.write()
+}
 
-// plocka ut alla kanaler
-// plocka ut alla meddelanden i en kanal
+async function addUser(name, password) {
+     db.data.push({
+          name: name,
+          password: password
+     })
+     await db.write()
+}
 
-// export { channels, users }
+async function removeUser(name) {
+     db.data = db.data.filter(user => user != user.name)
+     await db.write()
+}
+
+removeUser('Matilda')
+addUser('lovisa', "hej789") */
+
+
+export { db } 

@@ -1,0 +1,46 @@
+{
+     "channels": [
+          {
+               "channelName": "public",
+               "status": "public",
+               "message": [
+                    {
+                         "timeCreated": "",
+                         "userId": ""
+                    }
+               ]
+          },
+          {
+               "channelName": "private",
+               "status": "private",
+               "messages": [
+                    {
+                         "timeCreated": "Today",
+                         "userId": ""
+                    }
+               ]
+          },
+          {
+               "channelName": "animals",
+               "status": "public",
+               "messages": [
+                    {
+                         "timeCreated": "Today",
+                         "userId": ""
+                    }
+               ]
+          }
+     ],
+     "users": [
+          {
+               "username": "matilda",
+               "password": "",
+               "id": 1
+          },
+          {
+               "username": "kate",
+               "password": "",
+               "id": 2
+          }
+     ]
+}

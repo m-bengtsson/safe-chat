@@ -1,23 +1,13 @@
-import express from "express";
+import express from 'express'
+import { db } from '../database.js'
 
 const router = express.Router()
-
-const users = [
-     {
-          username: "matilda",
-          password: '',
-          id: 1
-     },
-     {
-          username: "kate",
-          password: '',
-          id: 2
-     }
-]
+const users = db.data.users;
 
 // Routes
 router.get('/', (req, res) => {
-     console.log('GET/ users')
+
+     console.log('GET/ users', users)
      res.status(200).send(users)
 })
 
@@ -34,6 +24,11 @@ router.get('/:id', (req, res) => {
           res.status(400).send('Tried to GET user with unexisting id')
      }
 })
+
+// POST user login and register
+// DELETE USER
+
+
 
 
 export default router
