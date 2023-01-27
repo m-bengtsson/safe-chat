@@ -34,13 +34,11 @@
      "users": [
           {
                "username": "matilda",
-               "password": "",
-               "id": 1
+               "password": "hej123"
           },
           {
                "username": "kate",
-               "password": "",
-               "id": 2
+               "password": "123hej"
           }
      ]
 }
