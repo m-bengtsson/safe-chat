@@ -11,6 +11,18 @@ router.get('/', (req, res) => {
      res.status(200).send(channels)
 })
 
+
+router.get('/:name', (req, res) => {
+     // console.log('GET /')
+     const name = req.params.name;
+     const maybeChannel = channels.find(channel => channel.channelName == name)
+     if (maybeChannel) {
+          res.status(200).send(maybeChannel)
+     } else {
+          res.sendStatus(400)
+     }
+})
+
 router.get('/:name/:messages', (req, res) => {
      // console.log('GET/ channels')
      const name = req.params.name;
@@ -24,17 +36,6 @@ router.get('/:name/:messages', (req, res) => {
      }
 })
 
-router.get('/:name', (req, res) => {
-     // console.log('GET /')
-     const name = req.params.name;
-     const maybeChannel = channels.find(channel => channel.channelName == name)
-     if (maybeChannel) {
-          res.status(200).send(maybeChannel)
-     } else {
-          res.sendStatus(400)
-     }
-})
-
 router.post('/', (req, res) => {
      // Ta reda på om användaren är inloggad innan man får skapa kanal
      // Här behövs inte kontrollering av dubletter iom att man ska kunna ska vilken kanal som helst
@@ -43,6 +44,18 @@ router.post('/', (req, res) => {
 
      channels.push({ channelName, status, messages: [{ timeCreated, userId }] })
      res.status(200).send(channels)
+     console.log('POST / ',)
+})
+
+router.post('/:name/', (req, res) => {
+     const name = req.params.name;
+     const maybeChannel = channels.find(channel => channel.channelName == name)
+     const messages = maybeChannel.messages
+
+     const { timeCreated, userId } = req.body;
+
+     messages.push({ timeCreated, userId })
+     res.status(200).send(messages)
      console.log('POST / ',)
 })
 
