@@ -6,7 +6,8 @@
                "message": [
                     {
                          "timeCreated": "",
-                         "userId": ""
+                         "userId": "",
+                         "text": ""
                     }
                ]
           },
@@ -16,7 +17,8 @@
                "messages": [
                     {
                          "timeCreated": "Today",
-                         "userId": ""
+                         "userId": "",
+                         "text": ""
                     }
                ]
           },
@@ -26,7 +28,8 @@
                "messages": [
                     {
                          "timeCreated": "Today",
-                         "userId": ""
+                         "userId": "",
+                         "text": ""
                     }
                ]
           }
