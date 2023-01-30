@@ -50,7 +50,10 @@ btnLogin.addEventListener('click', async () => {
 
 // event.preventDefault()
 
-
+// TODO:
+// fixa registerknapp, /ha samma form??
+// hårdkoda messages
+// 
 // input-username & input-password toggle/ disabled when logged in
 
 

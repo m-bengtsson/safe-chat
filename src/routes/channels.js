@@ -1,19 +1,20 @@
+
 import express from 'express'
 import { db } from '../database.js'
 
 const router = express.Router()
-const channels = db.data.channels
+//const channels = db.data.channels
 
 // Routes
 router.get('/', (req, res) => {
      // console.log('GET/ channels')
-     res.status(200).send(channels)
+     res.status(200).send(db.data.channels)
 })
 
 router.get('/:name', (req, res) => {
      // console.log('GET /')
-     const name = req.params.channelName;
-     const maybeChannel = channels.find(channel => channel.channelName === name)
+     const name = req.params.name;
+     const maybeChannel = db.data.channels.find(channel => channel.channelName == name)
      if (maybeChannel) {
           res.status(200).send(maybeChannel)
      } else {
