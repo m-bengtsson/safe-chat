@@ -1,5 +1,6 @@
 import express from 'express'
 import { db } from '../database.js'
+import { isNonEmptyString } from '../validation.js';
 
 const router = express.Router()
 const users = db.data.users;
@@ -25,7 +26,20 @@ router.get('/:id', (req, res) => {
      }
 })
 
-/* app.get('/secret', (req, res) => {
+router.post('/', (req, res) => {
+     const { username, password } = req.body
+
+     if (!isNonEmptyString(username, password)) {
+          res.sendStatus(400)
+          return
+     } else {
+          users.push({ username, password })
+          res.status(200).send(users)
+     }
+     console.log('POST / ', users)
+})
+/* 
+ app.get('/secret', (req, res) => {
      // JWT kan skickas antingen i request body, med querystring, eller i header: Authorization
      let token = req.body.token || req.query.token
      if (!token) {
@@ -57,7 +71,7 @@ router.get('/:id', (req, res) => {
           console.log('Ingen token')
           res.sendStatus(401)  // Unauthorized
      }
-}) */
+})  */
 // POST user login and register
 // DELETE USER
 

@@ -1,23 +1,23 @@
 {
      "channels": [
           {
-               "channelName": "public",
+               "channelName": "workstuff",
                "status": "public",
                "message": [
                     {
                          "timeCreated": "",
-                         "userId": "",
+                         "username": "",
                          "text": ""
                     }
                ]
           },
           {
-               "channelName": "private",
+               "channelName": "game modding",
                "status": "private",
                "messages": [
                     {
                          "timeCreated": "Today",
-                         "userId": "",
+                         "username": "",
                          "text": ""
                     }
                ]
@@ -28,7 +28,7 @@
                "messages": [
                     {
                          "timeCreated": "Today",
-                         "userId": "",
+                         "username": "",
                          "text": ""
                     }
                ]
