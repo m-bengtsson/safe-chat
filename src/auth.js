@@ -3,11 +3,12 @@ import jwt from 'jsonwebtoken'
 import * as dotenv from 'dotenv'
 import { db } from './database.js'
 
-
+// Config
 const app = express();
 dotenv.config()
 const users = db.data.users
 
+// Auth functions
 function authenticateUser(username, password) {
 
      const found = users.find(user => user.username === username && user.password === password)
@@ -23,21 +24,16 @@ function createToken(username) {
      return user
 }
 
-// TODO: FÖRSTÅ DETTA
-// GET /secret
-/* app.get('/secret', (req, res) => {
+function userIsAuthorized(req) {
      // JWT kan skickas antingen i request body, med querystring, eller i header: Authorization
      let token = req.body.token || req.query.token
      if (!token) {
-          let header = req.headers['authorization']
-          if (header === undefined) {
-               // Vi hittade ingen token, authorization fail
-               res.sendStatus(401)
-               return
+          let x = req.headers['authorization']
+          if (x === undefined) {
+               return false
           }
-          token = header.substring(7)
+          token = x.substring(7)
           // Authorization: Bearer JWT......
-          // substring(7) för att hoppa över "Bearer " och plocka ut JWT-strängen
      }
 
      console.log('Token: ', token)
@@ -46,20 +42,19 @@ function createToken(username) {
           try {
                decoded = jwt.verify(token, process.env.SECRET)
           } catch (error) {
-               console.log('Catch! Felaktig token!!')
-               res.sendStatus(401)
-               return
+               console.log('Catch! Felaktig token!!', error.message)
+               return false
           }
           console.log('decoded: ', decoded)
-          res.send('You have access to the secret stuff.')
+          return true
 
      } else {
           console.log('Ingen token')
-          res.sendStatus(401)  // Unauthorized
+          return false
      }
-})
- */
+}
 
 
 
-export { authenticateUser, createToken }
+
+export { authenticateUser, createToken, userIsAuthorized }

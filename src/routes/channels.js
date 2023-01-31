@@ -1,6 +1,7 @@
 import express from 'express'
 import { db } from '../database.js'
 import { isNonEmptyString } from '../validation.js'
+import { userIsAuthorized } from '../auth.js'
 
 const router = express.Router()
 const channels = db.data.channels
@@ -38,6 +39,10 @@ router.get('/:name/:messages', (req, res) => {
 
 // Create/post channel
 router.post('/', (req, res) => {
+     if (!userIsAuthorized(req)) {
+          res.sendStatus(401)
+          return
+     }
      // Ta reda på om användaren är inloggad innan man får skapa kanal
      // Här behövs inte kontrollering av dubletter iom att man ska kunna ska vilken kanal som helst
      const { channelName, status, messages: [{ timeCreated, username }] } = req.body;

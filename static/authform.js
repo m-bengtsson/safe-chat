@@ -13,24 +13,67 @@ const JWT_KEY = 'chat-api-jwt'
 let isLoggedIn = false;
 
 
+
+
+async function isAuthorized(user) {
+
+     const jwt = localStorage.getItem(JWT_KEY)
+     const options = {
+          method: 'GET',
+          headers: {
+               'Content-Type': "application/json",
+               'Authorization': 'Bearer ' + jwt
+          }
+     }
+     const response = await fetch('/api/users/', options)
+     const userToken = await response.json()
+
+
+     console.log('Usertoken: ', userToken.token)
+
+}
+
 function updateLoginStatus() {
      btnLogin.disabled = isLoggedIn;
      btnLogout.disabled = !isLoggedIn;
+
 }
 
-
-
-btnLogin.addEventListener('click', async () => {
-     // hämta username och password
-     // skicka med post request till servern
-     // när servern svarar:
-     // - uppdatera gränssnittet
-     // - spara jwt i localStorage
+btnSignUp.addEventListener('click', async () => {
+     // optimistisk kod =) LÄGG TILL TRY CATCH
      const user = {
           username: inputUsername.value,
           password: inputPassword.value
      }
+     const options = {
+          method: 'POST',
+          body: JSON.stringify(user),
+          headers: {
+               'Content-Type': "application/json"
+          }
+     }
+     const response = await fetch('/api/users', options)
+
+     if (response.status === 200) {
+          const userToken = await response.json()
+          console.log('Signup and login successful: ', userToken)
+          // spara usertoken.token
+          localStorage.setItem(JWT_KEY, userToken.token)
+          isLoggedIn = true;
+     } else {
+          console.log('Signup failed, status: ' + response.status)
+     }
+     updateLoginStatus()
+})
+
+
+
+btnLogin.addEventListener('click', async () => {
      // optimistisk kod =) LÄGG TILL TRY CATCH
+     const user = {
+          username: inputUsername.value,
+          password: inputPassword.value
+     }
      const options = {
           method: 'POST',
           body: JSON.stringify(user),
@@ -51,23 +94,13 @@ btnLogin.addEventListener('click', async () => {
      }
 
      updateLoginStatus()
+     isAuthorized(user)
 })
 
 // event.preventDefault()
-
-// TODO:
-// fixa registerknapp, /ha samma form??
-// hårdkoda messages
-// 
 // input-username & input-password toggle/ disabled when logged in
 
-
-
-/* btnGetFruits.addEventListener('click', getFruits)
-
-const newFruit = { name: "strawberry", price: 44, id: 42 }
-
-btnPostFruit.addEventListener('click', async () => {
+/* btnPostFruit.addEventListener('click', async () => {
      // skicka ett POST /api/friuits request ,data i request body
      // vad skickar servern för svar
      // UPPDATERA GRÄNSSNITTET

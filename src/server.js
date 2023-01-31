@@ -24,8 +24,6 @@ app.use('/api/users', users)
 app.use('/api/channels', channels)
 
 app.post('/login', (req, res) => {
-     // const name = req.body.name
-     // const password = req.body.password
      const { username, password } = req.body
 
      // Finns användaren i databasen?
