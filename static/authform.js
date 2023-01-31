@@ -4,11 +4,7 @@ const btnLogin = document.querySelector('#btn-login')
 const btnLogout = document.querySelector('#btn-logout')
 const btnSignUp = document.querySelector('#btn-sign-up')
 
-// TODO:
-// Gör fetch med POST metod för att registrera ny användare
-
 // AUTHENTICATION
-// Används i localStorage
 const JWT_KEY = 'chat-api-jwt'
 let isLoggedIn = false;
 
@@ -23,19 +19,25 @@ async function isAuthorized() {
                'Authorization': 'Bearer ' + jwt
           }
      }
-     const response = await fetch('/api/users/', options)
-     const decoded = await response.json()
+
+     try {
+          const response = await fetch('/api/users/', options)
+          if (response.status !== 200) {
+               console.log('Could not contact server. Status: ' + response.status)
+               return
+          }
+          const decoded = await response.json()
+     } catch (error) {
+          console.log('Something went wrong when fetching data from server. (GET) \n' + error.message)
+          return
+     }
 
      if (response.status === 200) {
           isLoggedIn = true
      }
 
      console.log('Status: ', response.status)
-
      console.log('Usertoken: ', decoded)
-
-
-
      updateLoginStatus()
 
 }
@@ -64,7 +66,6 @@ btnSignUp.addEventListener('click', async () => {
      if (response.status === 200) {
           const userToken = await response.json()
           console.log('Signup and login successful: ', userToken)
-          // spara usertoken.token
           localStorage.setItem(JWT_KEY, userToken.token)
           isLoggedIn = true;
      } else {
@@ -103,6 +104,15 @@ btnLogin.addEventListener('click', async () => {
      updateLoginStatus()
 })
 
+btnLogout.addEventListener('click', () => {
+     localStorage.removeItem(JWT_KEY)
+     isLoggedIn = false;
+     updateLoginStatus()
+
+     console.log('You have logged out!')
+
+})
+
 // event.preventDefault()
 // input-username & input-password toggle/ disabled when logged in
 
@@ -134,8 +144,6 @@ btnLogin.addEventListener('click', async () => {
           console.log('Något gick fel vid POST request! status = ', response.status)
      }
 }) */
-
-// Funktion för put ??
 
 /* const changedFruit = { name: "rasberry", price: 33 }
 
