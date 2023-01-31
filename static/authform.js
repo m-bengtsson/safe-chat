@@ -12,11 +12,9 @@ const btnSignUp = document.querySelector('#btn-sign-up')
 const JWT_KEY = 'chat-api-jwt'
 let isLoggedIn = false;
 
+isAuthorized()
 
-
-
-async function isAuthorized(user) {
-
+async function isAuthorized() {
      const jwt = localStorage.getItem(JWT_KEY)
      const options = {
           method: 'GET',
@@ -26,10 +24,19 @@ async function isAuthorized(user) {
           }
      }
      const response = await fetch('/api/users/', options)
-     const userToken = await response.json()
+     const decoded = await response.json()
+
+     if (response.status === 200) {
+          isLoggedIn = true
+     }
+
+     console.log('Status: ', response.status)
+
+     console.log('Usertoken: ', decoded)
 
 
-     console.log('Usertoken: ', userToken.token)
+
+     updateLoginStatus()
 
 }
 
@@ -94,7 +101,6 @@ btnLogin.addEventListener('click', async () => {
      }
 
      updateLoginStatus()
-     isAuthorized(user)
 })
 
 // event.preventDefault()

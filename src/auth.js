@@ -46,7 +46,7 @@ function userIsAuthorized(req) {
                return false
           }
           console.log('decoded: ', decoded)
-          return true
+          return decoded
 
      } else {
           console.log('Ingen token')

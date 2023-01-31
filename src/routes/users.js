@@ -8,9 +8,13 @@ const users = db.data.users;
 
 // Routes
 router.get('/', (req, res) => {
-
-     console.log('GET/ users', users)
-     res.status(200).send(users)
+     let decoded = userIsAuthorized(req)
+     if (!userIsAuthorized(req)) {
+          res.sendStatus(401)
+          return
+     }
+     console.log('GET/ users', decoded)
+     res.status(200).send(decoded)
 })
 
 router.get('/:id', (req, res) => {
