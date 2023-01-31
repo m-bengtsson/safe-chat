@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
           res.sendStatus(401)
           return
      }
-     console.log('GET/ users', decoded)
+     console.log(decoded)
      res.status(200).send(decoded)
 })
 

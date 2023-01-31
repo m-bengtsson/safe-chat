@@ -1,4 +1,5 @@
-const channelsList = document.querySelector(".channels-container")
+const channelsList = document.querySelector('.channels-container')
+
 
 async function getChannels() {
      let channelData = null;
@@ -21,7 +22,7 @@ async function getChannels() {
      channelData.forEach(channel => {
           console.log('channelData: ', channel.channelName)
           let div = document.createElement('div');
-          div.classList = "channels";
+          div.classList = 'channels';
           div.innerText = channel.channelName
           channelsList.appendChild(div);
      });

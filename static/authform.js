@@ -3,10 +3,12 @@ const inputPassword = document.querySelector('#input-password')
 const btnLogin = document.querySelector('#btn-login')
 const btnLogout = document.querySelector('#btn-logout')
 const btnSignUp = document.querySelector('#btn-sign-up')
+const welcomeUser = document.querySelector('.welcome-user')
 
 // AUTHENTICATION
 const JWT_KEY = 'chat-api-jwt'
 let isLoggedIn = false;
+let userLoggedIn = 'Guest'
 
 isAuthorized()
 
@@ -19,7 +21,6 @@ async function isAuthorized() {
                'Authorization': 'Bearer ' + jwt
           }
      }
-
      try {
           const response = await fetch('/api/users/', options)
           if (response.status !== 200) {
@@ -27,19 +28,18 @@ async function isAuthorized() {
                return
           }
           const decoded = await response.json()
+          if (response.status === 200) {
+               isLoggedIn = true
+               userLoggedIn = decoded.username
+          }
+          console.log('Status: ', response.status, ' \n Decoded token;', decoded)
+          welcomeUser.innerHTML = `Welcome ${userLoggedIn}!`
+
      } catch (error) {
           console.log('Something went wrong when fetching data from server. (GET) \n' + error.message)
           return
      }
-
-     if (response.status === 200) {
-          isLoggedIn = true
-     }
-
-     console.log('Status: ', response.status)
-     console.log('Usertoken: ', decoded)
      updateLoginStatus()
-
 }
 
 function updateLoginStatus() {
@@ -68,6 +68,7 @@ btnSignUp.addEventListener('click', async () => {
           console.log('Signup and login successful: ', userToken)
           localStorage.setItem(JWT_KEY, userToken.token)
           isLoggedIn = true;
+
      } else {
           console.log('Signup failed, status: ' + response.status)
      }
@@ -94,12 +95,15 @@ btnLogin.addEventListener('click', async () => {
      if (response.status === 200) {
           const userToken = await response.json()
           console.log('Login successful: ', userToken)
-          // spara usertoken.token
           localStorage.setItem(JWT_KEY, userToken.token)
           isLoggedIn = true;
+          userLoggedIn = inputUsername.value
+
      } else {
           console.log('login failed, status: ' + response.status)
      }
+     welcomeUser.innerHTML = `Welcome ${userLoggedIn}!`
+
 
      updateLoginStatus()
 })
@@ -108,6 +112,8 @@ btnLogout.addEventListener('click', () => {
      localStorage.removeItem(JWT_KEY)
      isLoggedIn = false;
      updateLoginStatus()
+     userLoggedIn = 'Guest'
+     welcomeUser.innerHTML = `Welcome ${userLoggedIn}!`
 
      console.log('You have logged out!')
 

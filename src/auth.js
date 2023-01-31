@@ -33,7 +33,6 @@ function userIsAuthorized(req) {
                return false
           }
           token = x.substring(7)
-          // Authorization: Bearer JWT......
      }
 
      console.log('Token: ', token)
@@ -53,7 +52,6 @@ function userIsAuthorized(req) {
           return false
      }
 }
-
 
 
 
