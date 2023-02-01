@@ -4,10 +4,7 @@ const btnSendMessage = document.querySelector('#send-message')
 const messageContainer = document.querySelector('.message-container')
 const messageInput = document.querySelector('#message-input')
 
-// if channelElement.innerText = channel.channelname 
-/*   if (channel.channelName === channelElement.innerText){
-       // lägg till message på channel???
-  } */
+
 
 async function getChannels() {
      let channelData = null;
@@ -35,6 +32,8 @@ async function getChannels() {
 
           if (channel.status === 'private') {
                channelElement.innerText = channel.channelName + 'PRIVATE'
+
+
                if (isLoggedIn) {
                     channelElement.addEventListener('click', () => {
                          getMessages(channel.channelName)
@@ -54,8 +53,8 @@ async function getChannels() {
           }
 
           channelsList.appendChild(channelElement);
-          //console.log(channelData)
-          //console.log('Channelstatus:', channel.status)
+          //console.log('Channel data from server: 'channelData)
+          //console.log('Channel private or public?: ', channel.status)
 
      });
 }

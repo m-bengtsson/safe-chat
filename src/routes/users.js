@@ -2,7 +2,9 @@ import express from 'express'
 import { db } from '../database.js'
 import { isNonEmptyString } from '../validation.js';
 import { userIsAuthorized } from '../auth.js';
+import bcrypt from 'bcryptjs'
 
+// const salt = bcrypt.genSaltSync(10);
 const router = express.Router()
 const users = db.data.users;
 
@@ -15,6 +17,7 @@ router.get('/', (req, res) => {
      }
      console.log(decoded)
      res.status(200).send(decoded)
+     // console.log('')
 })
 
 router.get('/:id', (req, res) => {
@@ -28,20 +31,22 @@ router.get('/:id', (req, res) => {
      } else {
           res.status(400).send('Tried to GET user with unexisting id')
      }
+     // console.log('')
 })
 
 router.post('/', (req, res) => {
      const { username, password } = req.body
-
-     let sameId = users.find(user => user.username === username)
+     //let sameId = users.find(user => user.username === username)
+     //let hashedPassword = bcrypt.hashSync(password, salt)
+     //password = hashedPassword
 
      if (!isNonEmptyString(username, password)) {
           res.sendStatus(400)
           return
-     } else if (sameId !== undefined) {
-          console.log('POST Duplicate id')
-          res.sendStatus(400)
-          return
+          /*      } else if (sameId !== undefined) {
+                    console.log('POST Duplicate id')
+                    res.sendStatus(400)
+                    return */
      } else {
           users.push({ username, password })
           res.status(200).send(users)

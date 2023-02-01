@@ -2,6 +2,7 @@ import express from 'express'
 import jwt from 'jsonwebtoken'
 import * as dotenv from 'dotenv'
 import { db } from './database.js'
+// import bcrypt from 'bcryptjs'
 
 // Config
 const app = express();
@@ -10,8 +11,21 @@ const users = db.data.users
 
 // Auth functions
 function authenticateUser(username, password) {
+     /*      let match = users.find(user => user.username == username)
+          if (!match) {
+               console.log('> Wrong username\n')
+          } else {
+               let correctPassword = bcrypt.compareSync(password, match.password)
+               if (correctPassword) {
+                    console.log('> Welcome user!', match.password)
+               } else {
+                    console.log('> Password does not match.', match.password)
+               }
+          } */
 
      const found = users.find(user => user.username === username && user.password === password)
+     //let correctPassword = bcrypt.compareSync(password, match.password)
+     //return match
      return Boolean(found)
 }
 

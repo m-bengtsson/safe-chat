@@ -4,7 +4,7 @@ import * as url from 'url';
 import channels from './routes/channels.js'
 import users from './routes/users.js'
 import { authenticateUser, createToken } from './auth.js';
-
+//import bcrypt from 'bcryptjs'
 
 // Configuration
 const app = express()

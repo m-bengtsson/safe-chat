@@ -37,6 +37,8 @@ async function isAuthorized() {
           if (response.status === 200) {
                isLoggedIn = true
                userLoggedIn = decoded.username
+               // updateLoginStatus()
+
           }
           console.log('Status: ', response.status, ' \n Decoded token;', decoded)
           welcomeUser.innerHTML = `Welcome ${userLoggedIn}!`
@@ -53,7 +55,7 @@ async function isAuthorized() {
 btnSignUp.addEventListener('click', async () => {
      // optimistisk kod =) LÄGG TILL TRY CATCH
      const newUser = {
-          name: inputUsername.value,
+          username: inputUsername.value,
           password: inputPassword.value
      }
      const options = {
@@ -67,12 +69,16 @@ btnSignUp.addEventListener('click', async () => {
 
      if (response.status === 200) {
           const users = await response.json()
+          welcomeUser.innerHTML = 'Please login to verify your signup :)'
+
           console.log('Signup successful: ', users)
 
      } else {
           welcomeUser.innerHTML = 'Please choose a unique username!'
           console.log('Signup failed, status: ' + response.status)
-     }
+     } /* else {
+          welcomeUser.innerHTML = 'Oops! Something went wrong'
+     } */
 
 })
 
