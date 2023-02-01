@@ -113,5 +113,11 @@ button {
 
 .message-input {
   height: 5rem;
+}
+
+.messages {
   margin: 0.5em;
+}
+
+input:active {
 }

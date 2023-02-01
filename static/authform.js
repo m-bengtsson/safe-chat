@@ -10,6 +10,12 @@ const JWT_KEY = 'chat-api-jwt'
 let isLoggedIn = false;
 let userLoggedIn = 'Guest'
 
+function updateLoginStatus() {
+     btnLogin.disabled = isLoggedIn;
+     btnLogout.disabled = !isLoggedIn;
+
+}
+
 isAuthorized()
 
 async function isAuthorized() {
@@ -42,11 +48,7 @@ async function isAuthorized() {
      updateLoginStatus()
 }
 
-function updateLoginStatus() {
-     btnLogin.disabled = isLoggedIn;
-     btnLogout.disabled = !isLoggedIn;
 
-}
 
 btnSignUp.addEventListener('click', async () => {
      // optimistisk kod =) LÄGG TILL TRY CATCH
@@ -106,18 +108,22 @@ btnLogin.addEventListener('click', async () => {
 
 
      updateLoginStatus()
+     console.log('Logged in?: ', isLoggedIn)
+
 })
 
 btnLogout.addEventListener('click', () => {
      localStorage.removeItem(JWT_KEY)
      isLoggedIn = false;
-     updateLoginStatus()
      userLoggedIn = 'Guest'
      welcomeUser.innerHTML = `Welcome ${userLoggedIn}!`
-
-     console.log('You have logged out!')
+     updateLoginStatus()
+     console.log('You have logged out!', isLoggedIn)
 
 })
+
+updateLoginStatus()
+console.log('Logged in?: ', isLoggedIn)
 
 // event.preventDefault()
 // input-username & input-password toggle/ disabled when logged in

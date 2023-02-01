@@ -12,7 +12,6 @@ router.get('/', (req, res) => {
      res.status(200).send(channels)
 })
 
-
 router.get('/:name', (req, res) => {
      // console.log('GET /')
      const name = req.params.name;

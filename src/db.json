@@ -3,11 +3,11 @@
           {
                "channelName": "workstuff",
                "status": "public",
-               "message": [
+               "messages": [
                     {
                          "timeCreated": "",
                          "username": "",
-                         "text": ""
+                         "text": "I hate going to work but "
                     }
                ]
           },
@@ -18,7 +18,7 @@
                     {
                          "timeCreated": "Today",
                          "username": "",
-                         "text": ""
+                         "text": "Does anyone know a good site for modding games?"
                     }
                ]
           },
@@ -27,9 +27,14 @@
                "status": "public",
                "messages": [
                     {
-                         "timeCreated": "Today",
+                         "timeCreated": "yesterday",
+                         "username": "matilda",
+                         "text": "What are your favorite animals ? :D"
+                    },
+                    {
+                         "timeCreated": "today",
                          "username": "",
-                         "text": ""
+                         "text": "I like cats "
                     }
                ]
           }
