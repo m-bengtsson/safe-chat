@@ -22,6 +22,7 @@ router.get('/:id', (req, res) => {
      console.log('GET/ users/ id')
 
      let maybeUser = users.find(user => user.username === id)
+
      if (maybeUser) {
           res.status(200).send(maybeUser)
      } else {
@@ -32,7 +33,13 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
      const { username, password } = req.body
 
+     let sameId = users.find(user => user.username === username)
+
      if (!isNonEmptyString(username, password)) {
+          res.sendStatus(400)
+          return
+     } else if (sameId !== undefined) {
+          console.log('POST Duplicate id')
           res.sendStatus(400)
           return
      } else {

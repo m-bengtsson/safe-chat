@@ -52,13 +52,13 @@ async function isAuthorized() {
 
 btnSignUp.addEventListener('click', async () => {
      // optimistisk kod =) LÄGG TILL TRY CATCH
-     const user = {
-          username: inputUsername.value,
+     const newUser = {
+          name: inputUsername.value,
           password: inputPassword.value
      }
      const options = {
           method: 'POST',
-          body: JSON.stringify(user),
+          body: JSON.stringify(newUser),
           headers: {
                'Content-Type': "application/json"
           }
@@ -66,15 +66,14 @@ btnSignUp.addEventListener('click', async () => {
      const response = await fetch('/api/users', options)
 
      if (response.status === 200) {
-          const userToken = await response.json()
-          console.log('Signup and login successful: ', userToken)
-          localStorage.setItem(JWT_KEY, userToken.token)
-          isLoggedIn = true;
+          const users = await response.json()
+          console.log('Signup successful: ', users)
 
      } else {
+          welcomeUser.innerHTML = 'Please choose a unique username!'
           console.log('Signup failed, status: ' + response.status)
      }
-     updateLoginStatus()
+
 })
 
 

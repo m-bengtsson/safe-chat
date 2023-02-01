@@ -87,7 +87,30 @@ function showFetchedMessages(message) {
 
 
 // POST
-btnSendMessage.addEventListener('click', createMessage)
+async function postMessage() {
+     const newMessage = {
+          text: "mmmmmm",
+          timeCreated: "01-10-2020",
+          username: userLoggedIn
+     }
+     const options = {
+          method: 'POST',
+          body: JSON.stringify(newMessage),
+          headers: {
+               'Content-Type': 'application/json',
+               //'Authorization': 'Bearer ' + jwt
+          }
+     }
+
+     const response = await fetch(`api/channels/`)
+     getMessages('animals')
+     const messageData = await response.json()
+     console.log('Status code: ', response.status, messageData)
+
+}
+
+
+btnSendMessage.addEventListener('click', postMessage)
 
 function createMessage() {
      let messageElement = document.createElement('div')
@@ -96,48 +119,6 @@ function createMessage() {
      messageContainer.appendChild(messageElement)
 
 }
-// getMessages()
-
-
-/* async function getMessages() {
-     let name;
-     let messages;
-
-     let messageData = null;
-     try {
-          const response = await fetch(`api/channels/${name}/${messages}`);
-          messageData = await response.json();
-          if (response.status !== 200) {
-               console.log('Could not contact server. Status: ' + response.status)
-               return
-          }
-          console.log('Data från server:', messageData)
-
-     } catch (error) {
-          console.log('Something went wrong when fetching data from the server. GET \n' +
-               error.message)
-          return
-     }
-     messageContainer.innerHTML = '';
-
-     messageData.forEach(channel => {
-
-          console.log('messageData: ', channel.messages)
-          let messageElement = document.createElement('div');
-          messageElement.innerText = messageInput.value
-          messageElement.classList = 'messages';
-          messageElement.innerText = messages
-          if (channel.status === 'private') {
-               messageElement.innerText = channel.message + 'PRIVATE'
-
-          }
-          messageContainer.appendChild(messageElement);
-          //console.log(messageData)
-          console.log('Channelstatus:', channel.status)
-     });
-} */
-
-
 
 
 
