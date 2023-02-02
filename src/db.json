@@ -1,52 +1,96 @@
 {
-     "channels": [
-          {
-               "channelName": "workstuff",
-               "status": "public",
-               "messages": [
-                    {
-                         "timeCreated": "",
-                         "username": "",
-                         "text": "I hate going to work but "
-                    }
-               ]
-          },
-          {
-               "channelName": "game modding",
-               "status": "private",
-               "messages": [
-                    {
-                         "timeCreated": "Today",
-                         "username": "",
-                         "text": "Does anyone know a good site for modding games?"
-                    }
-               ]
-          },
-          {
-               "channelName": "animals",
-               "status": "public",
-               "messages": [
-                    {
-                         "timeCreated": "yesterday",
-                         "username": "matilda",
-                         "text": "What are your favorite animals ? :D"
-                    },
-                    {
-                         "timeCreated": "today",
-                         "username": "",
-                         "text": "I like cats "
-                    }
-               ]
-          }
-     ],
-     "users": [
-          {
-               "username": "matilda",
-               "password": "hej123"
-          },
-          {
-               "username": "kate",
-               "password": "123hej"
-          }
-     ]
+  "channels": [
+    {
+      "channelName": "workstuff",
+      "status": "public",
+      "messages": [
+        {
+          "timeCreated": "",
+          "username": "",
+          "text": "I hate going to work but "
+        }
+      ]
+    },
+    {
+      "channelName": "game modding",
+      "status": "private",
+      "messages": [
+        {
+          "timeCreated": "Today",
+          "username": "",
+          "text": "Does anyone know a good site for modding games?"
+        }
+      ]
+    },
+    {
+      "channelName": "animals",
+      "status": "public",
+      "messages": [
+        {
+          "timeCreated": "yesterday",
+          "username": "matilda",
+          "text": "What are your favorite animals ? :D"
+        },
+        {
+          "timeCreated": "today",
+          "username": "",
+          "text": "I like cats "
+        },
+        {
+          "timeCreated": "today 16:19",
+          "username": "matilda",
+          "text": "dfgdfg"
+        },
+        {
+          "timeCreated": "01-10-2020",
+          "username": "Guest",
+          "text": "          mmmmmm"
+        },
+        {
+          "timeCreated": "01-10-2020",
+          "username": "Guest",
+          "text": "          test"
+        },
+        {
+          "timeCreated": "01-10-2020",
+          "username": "Guest",
+          "text": "          test1"
+        },
+        {
+          "timeCreated": "01-10-2020",
+          "username": "Guest",
+          "text": "          hej"
+        },
+        {
+          "timeCreated": "01-10-2020",
+          "username": "Guest",
+          "text": "          test1"
+        },
+        {
+          "timeCreated": "01-10-2020",
+          "username": "Guest",
+          "text": "          test2"
+        },
+        {
+          "timeCreated": "01-10-2020",
+          "username": "Guest",
+          "text": "test3"
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "matilda",
+      "password": "hej123"
+    },
+    {
+      "username": "kate",
+      "password": "123hej"
+    },
+    {
+      "username": "hejsan",
+      "password": "$2a$10$21JudSsLXEq/4o/KDTyKROSNNv1ipBE4yaNnhetlpi3jhxAaNPorW"
+    }
+  ]
 }

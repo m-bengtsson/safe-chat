@@ -51,10 +51,11 @@ router.post('/', (req, res) => {
      console.log('POST / ',)
 })
 
-// Create/post message
+// post message
 router.post('/:name/', (req, res) => {
      const name = req.params.name;
      const maybeChannel = channels.find(channel => channel.channelName == name)
+     console.log('Channel', maybeChannel)
      const messages = maybeChannel.messages
      const { timeCreated, username, text } = req.body
 
@@ -62,7 +63,9 @@ router.post('/:name/', (req, res) => {
           res.sendStatus(400)
           return
      } else {
+          console.log('messages: ', messages)
           messages.push({ timeCreated, username, text })
+          db.write()
           res.status(200).send(messages)
      }
      console.log('POST / ', text)

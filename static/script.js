@@ -102,11 +102,13 @@ async function postMessage() {
                'Authorization': 'Bearer ' + jwt
           }
      }
-     const response = await fetch(`api/channels/animals/messages`)
+     const response = await fetch(`/api/channels/animals/`, options)
      messageData = await response.json()
+     console.log('type of messagedata', '"' + messageData + '"', typeof messageData)
      if (response.status === 200) {
           console.log('it worked')
      }
+
      console.log('Status code: ', response.status)
      console.log('new message ', newMessage)
      console.log('Data from backend ', messageData)

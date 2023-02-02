@@ -2,31 +2,28 @@ import express from 'express'
 import jwt from 'jsonwebtoken'
 import * as dotenv from 'dotenv'
 import { db } from './database.js'
-// import bcrypt from 'bcryptjs'
+import bcrypt from 'bcryptjs'
 
 // Config
+const salt = bcrypt.genSaltSync(10);
 const app = express();
 dotenv.config()
 const users = db.data.users
 
 // Auth functions
 function authenticateUser(username, password) {
-     /*      let match = users.find(user => user.username == username)
-          if (!match) {
-               console.log('> Wrong username\n')
+     let match = users.find(user => user.username == username)
+     if (!match) {
+          console.log('> Wrong username\n')
+     } else {
+          let correctPassword = bcrypt.compareSync(password, match.password)
+          if (correctPassword) {
+               console.log('> Welcome user!', match.password)
           } else {
-               let correctPassword = bcrypt.compareSync(password, match.password)
-               if (correctPassword) {
-                    console.log('> Welcome user!', match.password)
-               } else {
-                    console.log('> Password does not match.', match.password)
-               }
-          } */
-
-     const found = users.find(user => user.username === username && user.password === password)
-     //let correctPassword = bcrypt.compareSync(password, match.password)
-     //return match
-     return Boolean(found)
+               console.log('> Password does not match.', match.password)
+          }
+     }
+     return match
 }
 
 function createToken(username) {
@@ -34,7 +31,7 @@ function createToken(username) {
 
      const token = jwt.sign(user, process.env.SECRET, { expiresIn: '1h' })
      user.token = token
-     console.log('createToken', user)
+     // console.log('createToken', user)
      return user
 }
 

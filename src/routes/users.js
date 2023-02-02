@@ -4,7 +4,7 @@ import { isNonEmptyString } from '../validation.js';
 import { userIsAuthorized } from '../auth.js';
 import bcrypt from 'bcryptjs'
 
-// const salt = bcrypt.genSaltSync(10);
+const salt = bcrypt.genSaltSync(10);
 const router = express.Router()
 const users = db.data.users;
 
@@ -35,23 +35,24 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-     const { username, password } = req.body
-     //let sameId = users.find(user => user.username === username)
-     //let hashedPassword = bcrypt.hashSync(password, salt)
-     //password = hashedPassword
+     let { username, password } = req.body
+     let sameId = users.find(user => user.username === username)
+     let hashedPassword = bcrypt.hashSync(password, salt)
+     password = hashedPassword
 
      if (!isNonEmptyString(username, password)) {
           res.sendStatus(400)
           return
-          /*      } else if (sameId !== undefined) {
-                    console.log('POST Duplicate id')
-                    res.sendStatus(400)
-                    return */
+     } else if (sameId !== undefined) {
+          console.log('POST Duplicate id')
+          res.sendStatus(400)
+          return
      } else {
           users.push({ username, password })
           res.status(200).send(users)
      }
      console.log('POST / ', users)
+     db.write()
 })
 
 export default router

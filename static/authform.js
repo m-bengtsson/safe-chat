@@ -13,7 +13,6 @@ let userLoggedIn = 'Guest'
 function updateLoginStatus() {
      btnLogin.disabled = isLoggedIn;
      btnLogout.disabled = !isLoggedIn;
-
 }
 
 isAuthorized()
