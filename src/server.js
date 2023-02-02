@@ -27,10 +27,6 @@ app.use('/api/channels', channels)
 app.post('/login', (req, res) => {
 
      let { username, password } = req.body
-     //let hashedPassword = bcrypt.hashSync(password, salt)
-     //password = hashedPassword
-     //console.log('Password: ', password)
-
 
      // Finns användaren i databasen?
      if (authenticateUser(username, password)) {
@@ -45,11 +41,6 @@ app.post('/login', (req, res) => {
 })
 
 export { app }
-
-
-// TODO: 
-// post
-// koppla till frontend
 
 
 

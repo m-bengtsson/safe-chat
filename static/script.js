@@ -41,7 +41,6 @@ async function getChannels() {
                     } else {
                          console.log('2 PRIVATE CHANNEL * Logged in?: ', isLoggedIn)
                          channelElement.innerText = channel.channelName + ' * Oops! Log in to see'
-
                     }
                })
           } else {
@@ -57,7 +56,6 @@ async function getChannels() {
           //console.log('Channel private or public?: ', channel.status)
      });
 }
-
 
 
 async function getMessages(name) {
@@ -125,19 +123,6 @@ function createMessage() {
      messageContainer.appendChild(messageElement)
 
 }
-
-
-
-
-/* btnSendMessage.addEventListener('click', () => {
-     let messageElement = document.createElement('div')
-     messageElement.className = 'messages'
-     messageElement.innerText = messageInput.value
-     messageContainer.appendChild(messageElement)
-
-     // console.log('Message input: ' + messageElement.innerText)
-
-}) */
 
 
 

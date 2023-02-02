@@ -15,31 +15,5 @@ const db = new Low(adapter)
 
 await db.read()
 
-/* console.log('The database contains: ', db.data)
-
-if (db.data === null) {
-     db.data = [
-          { name: 'Matilda', password: "hej123" },
-          { name: 'Kate', password: "123hej" }
-     ]
-     await db.write()
-}
-
-async function addUser(name, password) {
-     db.data.push({
-          name: name,
-          password: password
-     })
-     await db.write()
-}
-
-async function removeUser(name) {
-     db.data = db.data.filter(user => user != user.name)
-     await db.write()
-}
-
-removeUser('Matilda')
-addUser('lovisa', "hej789") */
-
 
 export { db } 

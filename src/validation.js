@@ -6,4 +6,3 @@ export { isNonEmptyString }
 
 // Validate:
 // Double username
-// to lowercase?
