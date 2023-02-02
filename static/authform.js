@@ -17,6 +17,8 @@ function updateLoginStatus() {
 }
 
 isAuthorized()
+console.log(isAuthorized())
+
 
 async function isAuthorized() {
      const jwt = localStorage.getItem(JWT_KEY)
@@ -29,6 +31,7 @@ async function isAuthorized() {
      }
      try {
           const response = await fetch('/api/users/', options)
+          console.log('response: ', response)
           if (response.status !== 200) {
                console.log('Could not contact server. Status: ' + response.status)
                return
@@ -105,13 +108,12 @@ btnLogin.addEventListener('click', async () => {
           localStorage.setItem(JWT_KEY, userToken.token)
           isLoggedIn = true;
           userLoggedIn = inputUsername.value
+          welcomeUser.innerHTML = `Welcome ${userLoggedIn}!`
+
 
      } else {
           console.log('login failed, status: ' + response.status)
      }
-     welcomeUser.innerHTML = `Welcome ${userLoggedIn}!`
-
-
      updateLoginStatus()
      console.log('Logged in?: ', isLoggedIn)
 
@@ -127,7 +129,6 @@ btnLogout.addEventListener('click', () => {
 
 })
 
-updateLoginStatus()
 console.log('Logged in?: ', isLoggedIn)
 
 // event.preventDefault()

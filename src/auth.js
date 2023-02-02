@@ -38,8 +38,8 @@ function createToken(username) {
      return user
 }
 
+
 function userIsAuthorized(req) {
-     // JWT kan skickas antingen i request body, med querystring, eller i header: Authorization
      let token = req.body.token || req.query.token
      if (!token) {
           let x = req.headers['authorization']
