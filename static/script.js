@@ -55,7 +55,9 @@ function clickedChannel(channel) {
                } else {
                     messageContainer.innerHTML = ''
                     console.log('2 PRIVATE CHANNEL * Logged in?: ', isLoggedIn)
-                    channelElement.innerText = channel.channelName + ' * Oops! Log in to see'
+                    channelElement.innerText = channel.channelName + ' \n * Oops! Log in to see'
+                    messageHeading.innerText = currentChannel
+
                }
           })
      } else {
