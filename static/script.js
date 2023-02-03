@@ -1,9 +1,11 @@
 const channelsList = document.querySelector('.channels-container')
 const channels = document.querySelectorAll('.channels')
 const btnSendMessage = document.querySelector('#send-message')
-const messageContainer = document.querySelector('.message-container')
+let messageContainer = document.querySelector('.message-container')
 const messageInput = document.querySelector('#message-input')
+const messageHeading = document.querySelector('.heading')
 
+let currentChannel = '';
 getChannels()
 
 async function getChannels() {
@@ -22,65 +24,55 @@ async function getChannels() {
           return
      }
      channelsList.innerHTML = '';
-     console.log('script.js channelData foreach')
+     // console.log('script.js channelData foreach')
 
      channelData.forEach(channel => {
+          clickedChannel(channel)
           //console.log('channelData: ', channel.channelName)
-          let channelElement = document.createElement('div');
-          channelElement.classList = 'channels';
-          channelElement.innerText = channel.channelName
-
-          if (channel.status === 'private') {
-               channelElement.innerText = 'PRIVATE * ' + channel.channelName
-
-               channelElement.addEventListener('click', () => {
-                    if (isLoggedIn) {
-                         getMessages(channel.channelName)
-                         console.log('1 PRIVATE CHANNEL * Logged in?: ', isLoggedIn)
-                         channelElement.innerText = channel.channelName
-                    } else {
-                         console.log('2 PRIVATE CHANNEL * Logged in?: ', isLoggedIn)
-                         channelElement.innerText = channel.channelName + ' * Oops! Log in to see'
-                    }
-               })
-          } else {
-               channelElement.addEventListener('click', () => {
-                    getMessages(channel.channelName)
-                    console.log(' PUBLICH CHANNEL * Logged in?: ', isLoggedIn)
-
-               })
-          }
-          channelsList.appendChild(channelElement);
-
           //console.log('Channel data from server: 'channelData)
           //console.log('Channel private or public?: ', channel.status)
      });
 }
 
 
-async function getMessages(name) {
-     messageContainer.innerHTML = ''
-     let messageData;
-     const response = await fetch(`api/channels/${name}/messages`)
-     messageData = await response.json()
 
-     messageData.forEach(message => {
-          console.log('Message text: ', message.text)
-          showFetchedMessages(message.text)
-     })
-     console.log('MessageData from server:', messageData)
+function clickedChannel(channel) {
+     let channelElement = document.createElement('div');
+     channelElement.classList = 'channels';
+     channelElement.innerText = channel.channelName
 
+     if (channel.status === 'private') {
+          channelElement.innerText = 'PRIVATE * ' + channel.channelName
+
+          channelElement.addEventListener('click', () => {
+               currentChannel = channel.channelName
+               if (isLoggedIn) {
+                    getMessages(channel.channelName)
+                    console.log('1 PRIVATE CHANNEL * Logged in?: ', isLoggedIn)
+                    channelElement.innerText = channel.channelName
+               } else {
+                    console.log('2 PRIVATE CHANNEL * Logged in?: ', isLoggedIn)
+                    channelElement.innerText = channel.channelName + ' * Oops! Log in to see'
+                    messageContainer = ''
+               }
+          })
+     } else {
+          channelElement.addEventListener('click', () => {
+               currentChannel = channel.channelName
+               getMessages(channel.channelName)
+               console.log(' PUBLICH CHANNEL * Logged in?: ', isLoggedIn)
+          })
+     }
+     channelsList.appendChild(channelElement);
 }
 
-function showFetchedMessages(message) {
 
-     let messageElement = document.createElement('div')
-     messageElement.className = 'messages'
-     messageElement.innerText = `${userLoggedIn} * ${message}`
-     messageContainer.appendChild(messageElement)
 
+function getDate() {
+     let newDate = new Date()
+     let dateString = newDate.toDateString()
+     return dateString
 }
-
 
 // POST
 async function postMessage() {
@@ -89,8 +81,8 @@ async function postMessage() {
 
      const newMessage = {
           text: messageInput.value,
-          timeCreated: "01-10-2020",
-          username: userLoggedIn
+          timeCreated: getDate(),
+          username: `${userLoggedIn}`
      }
      const options = {
           method: 'POST',
@@ -100,29 +92,44 @@ async function postMessage() {
                'Authorization': 'Bearer ' + jwt
           }
      }
-     const response = await fetch(`/api/channels/animals/`, options)
+     const response = await fetch(`/api/channels/${currentChannel}/`, options)
      messageData = await response.json()
-     console.log('type of messagedata', '"' + messageData + '"', typeof messageData)
+     // console.log('type of messagedata', '"' + messageData + '"', typeof messageData)
      if (response.status === 200) {
+          //getMessages('animals')
+          createMessage(newMessage)
           console.log('it worked')
      }
-
-     console.log('Status code: ', response.status)
-     console.log('new message ', newMessage)
-     console.log('Data from backend ', messageData)
-
+     // console.log('Status code: ', response.status)
+     // console.log('new message ', newMessage)
+     // console.log('Data from backend ', messageData)
 }
 
 
 btnSendMessage.addEventListener('click', postMessage)
 
-function createMessage() {
-     let messageElement = document.createElement('div')
-     messageElement.className = 'messages'
-     messageElement.innerText = messageInput.value
-     messageContainer.appendChild(messageElement)
+async function getMessages(name) {
+
+     messageContainer.innerHTML = ''
+     let messageData;
+     const response = await fetch(`api/channels/${name}/messages`)
+     messageData = await response.json()
+
+     messageData.forEach(message => {
+          console.log('Message text: ', message.text)
+          createMessage(message)
+     })
+     console.log('MessageData from server:', messageData)
 
 }
 
+function createMessage(message) {
+
+     let messageElement = document.createElement('div')
+     messageElement.className = 'messages'
+     messageElement.innerText = `${message.timeCreated} * ${message.username} : ${message.text}`
+     messageContainer.appendChild(messageElement)
+
+}
 
 

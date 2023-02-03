@@ -43,7 +43,7 @@ router.post('/', (req, res) => {
           return
      }
      // Ta reda på om användaren är inloggad innan man får skapa kanal
-     // Här behövs inte kontrollering av dubletter iom att man ska kunna sätta vilket namn som helst
+     // Här behövs inte kontrollering av dubletter iom att man ska kunna sätta vilken kanal som helst
      const { channelName, status, messages: [{ timeCreated, username }] } = req.body;
 
      channels.push({ channelName, status, messages: [{ timeCreated, username }] })
@@ -73,3 +73,7 @@ router.post('/:name/', (req, res) => {
 })
 
 export default router
+
+
+// isPublic ?
+// Delete messages

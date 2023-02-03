@@ -119,6 +119,8 @@ btnLogin.addEventListener('click', async () => {
 })
 
 btnLogout.addEventListener('click', () => {
+     getChannels()
+     messageContainer.innerHTML = ''
      localStorage.removeItem(JWT_KEY)
      isLoggedIn = false;
      userLoggedIn = 'Guest'
@@ -128,7 +130,6 @@ btnLogout.addEventListener('click', () => {
 
 })
 
-console.log('Logged in?: ', isLoggedIn)
 
 // event.preventDefault()
 // input-username & input-password toggle/ disabled when logged in

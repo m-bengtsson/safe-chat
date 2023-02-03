@@ -46,6 +46,7 @@ main {
   flex-grow: 1;
   padding: 0em;
   margin: 2em;
+  justify-content: center;
 }
 
 main > * {
@@ -62,10 +63,12 @@ button {
   flex-direction: column;
   border: rgb(0, 255, 0) solid 3px;
   border-radius: 2px;
+  max-width: 20em;
 }
 
 .channels {
   margin: 0.5em;
+  cursor: pointer;
 }
 
 .selected {
@@ -103,12 +106,13 @@ button {
   flex-direction: column;
   border: rgb(0, 255, 0) solid 3px;
   border-radius: 2px;
+  max-width: 20em;
+  max-height: 40em;
 }
 
 .message-form {
   display: flex;
   flex-direction: column;
-  margin-top: 20em;
 }
 
 .message-input {
@@ -116,6 +120,7 @@ button {
 }
 
 .messages {
+  display: block;
   margin: 0.5em;
 }
 

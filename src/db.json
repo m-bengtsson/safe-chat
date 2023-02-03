@@ -6,8 +6,63 @@
       "messages": [
         {
           "timeCreated": "",
-          "username": "",
+          "username": "matilda",
           "text": "I hate going to work but "
+        },
+        {
+          "timeCreated": "Thu Feb 02 2023",
+          "username": "Guest",
+          "text": "work"
+        },
+        {
+          "timeCreated": "Thu Feb 02 2023",
+          "username": "matilda",
+          "text": "modd modd\n"
+        },
+        {
+          "timeCreated": "Thu Feb 02 2023",
+          "username": "Guest",
+          "text": "ertertert"
+        },
+        {
+          "timeCreated": "Thu Feb 02 2023",
+          "username": "Guest",
+          "text": "ertertert"
+        },
+        {
+          "timeCreated": "Thu Feb 02 2023",
+          "username": "Guest",
+          "text": "ertertert"
+        },
+        {
+          "timeCreated": "Thu Feb 02 2023",
+          "username": "Guest",
+          "text": "ertertert"
+        },
+        {
+          "timeCreated": "Thu Feb 02 2023",
+          "username": "Guest",
+          "text": "ertertert"
+        },
+        {
+          "timeCreated": "Thu Feb 02 2023",
+          "username": "Guest",
+          "text": "ertertert"
+        },
+        {
+          "timeCreated": "Thu Feb 02 2023",
+          "username": "Guest",
+          "text": "ertertert"
+        },
+        {
+          "timeCreated": "Thu Feb 02 2023",
+          "username": "Guest",
+          "text": "ertertert"
+        },
+        {
+          "timeCreated": "Thu Feb 02 2023",
+          "username": "Guest",
+          "text": "ertertert"
         }
       ]
     },
@@ -17,8 +72,13 @@
       "messages": [
         {
           "timeCreated": "Today",
-          "username": "",
+          "username": "kate",
           "text": "Does anyone know a good site for modding games?"
+        },
+        {
+          "timeCreated": "Thu Feb 02 2023",
+          "username": "matilda",
+          "text": "ggggg"
         }
       ]
     },
@@ -32,64 +92,69 @@
           "text": "What are your favorite animals ? :D"
         },
         {
-          "timeCreated": "today",
-          "username": "",
-          "text": "I like cats "
-        },
-        {
-          "timeCreated": "today 16:19",
-          "username": "matilda",
-          "text": "dfgdfg"
-        },
-        {
-          "timeCreated": "01-10-2020",
+          "timeCreated": "Thu Feb 02 2023",
           "username": "Guest",
-          "text": "          mmmmmm"
+          "text": "hejhej"
         },
         {
-          "timeCreated": "01-10-2020",
+          "timeCreated": "Thu Feb 02 2023",
           "username": "Guest",
-          "text": "          test"
+          "text": " n "
         },
         {
-          "timeCreated": "01-10-2020",
+          "timeCreated": "Thu Feb 02 2023",
           "username": "Guest",
-          "text": "          test1"
+          "text": " n tytj"
         },
         {
-          "timeCreated": "01-10-2020",
+          "timeCreated": "Thu Feb 02 2023",
           "username": "Guest",
-          "text": "          hej"
+          "text": " n tytj"
         },
         {
-          "timeCreated": "01-10-2020",
+          "timeCreated": "Thu Feb 02 2023",
           "username": "Guest",
-          "text": "          test1"
+          "text": " n tytj"
         },
         {
-          "timeCreated": "01-10-2020",
+          "timeCreated": "Thu Feb 02 2023",
           "username": "Guest",
-          "text": "          test2"
+          "text": " n tytj"
         },
         {
-          "timeCreated": "01-10-2020",
+          "timeCreated": "Thu Feb 02 2023",
           "username": "Guest",
-          "text": "test3"
+          "text": " n tytj"
         },
         {
-          "timeCreated": "01-10-2020",
-          "username": "matilda",
-          "text": "m,m"
-        },
-        {
-          "timeCreated": "01-10-2020",
-          "username": "matilda",
-          "text": "m,m"
-        },
-        {
-          "timeCreated": "01-10-2020",
+          "timeCreated": "Thu Feb 02 2023",
           "username": "Guest",
-          "text": ",m,"
+          "text": "kn"
+        },
+        {
+          "timeCreated": "Thu Feb 02 2023",
+          "username": "Guest",
+          "text": "kndfgldkfglkdfng"
+        },
+        {
+          "timeCreated": "Thu Feb 02 2023",
+          "username": "Guest",
+          "text": "kndfgldkfglkdfng"
+        },
+        {
+          "timeCreated": "Thu Feb 02 2023",
+          "username": "Guest",
+          "text": "kndfgldkfglkdfng"
+        },
+        {
+          "timeCreated": "Thu Feb 02 2023",
+          "username": "Guest",
+          "text": "hej"
+        },
+        {
+          "timeCreated": "Thu Feb 02 2023",
+          "username": "Guest",
+          "text": "hej"
         }
       ]
     }
@@ -106,6 +171,10 @@
     {
       "username": "hejsan",
       "password": "$2a$10$21JudSsLXEq/4o/KDTyKROSNNv1ipBE4yaNnhetlpi3jhxAaNPorW"
+    },
+    {
+      "username": "david",
+      "password": "$2a$10$HsSxb40jyLMSB3gGwUijLe.v6KoySqChfnZIRsboYr9SuSvEooqrS"
     }
   ]
 }
