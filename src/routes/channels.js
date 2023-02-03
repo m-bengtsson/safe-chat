@@ -3,17 +3,17 @@ import { db } from '../database.js'
 import { isNonEmptyString } from '../validation.js'
 import { userIsAuthorized } from '../auth.js'
 
+
 const router = express.Router()
 const channels = db.data.channels
 
 // Routes
 router.get('/', (req, res) => {
-     // console.log('GET/ channels')
      res.status(200).send(channels)
 })
 
 router.get('/:name', (req, res) => {
-     // console.log('GET /')
+
      const name = req.params.name;
      const maybeChannel = channels.find(channel => channel.channelName == name)
      if (maybeChannel) {
@@ -24,7 +24,7 @@ router.get('/:name', (req, res) => {
 })
 
 router.get('/:name/:messages', (req, res) => {
-     // console.log('GET/ channels')
+
      const name = req.params.name;
      const maybeChannel = channels.find(channel => channel.channelName == name)
      const messages = maybeChannel.messages
@@ -43,7 +43,6 @@ router.post('/', (req, res) => {
           return
      }
      // Ta reda på om användaren är inloggad innan man får skapa kanal
-     // Här behövs inte kontrollering av dubletter iom att man ska kunna sätta vilken kanal som helst
      const { channelName, status, messages: [{ timeCreated, username }] } = req.body;
 
      channels.push({ channelName, status, messages: [{ timeCreated, username }] })
@@ -73,7 +72,3 @@ router.post('/:name/', (req, res) => {
 })
 
 export default router
-
-
-// isPublic ?
-// Delete messages

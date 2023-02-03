@@ -4,13 +4,15 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  line-height: 1.7em;
   /*   border: dashed rgb(142, 156, 142) 2px;
  */
 }
 body {
   color: rgb(0, 255, 0);
   margin: 1em;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Press Start 2P";
+  font-size: 0.7rem;
   display: flex;
   flex-direction: column;
   background-color: rgb(26, 26, 26);
@@ -27,7 +29,7 @@ header {
 }
 
 h1 {
-  font-size: 18px;
+  font-size: 0.8rem;
   background-color: rgb(0, 255, 0);
   text-align: center;
   border: none;
@@ -37,7 +39,7 @@ h1 {
 h2 {
   background-color: rgb(0, 255, 0);
   color: black;
-  font-size: 18px;
+  font-size: 0.8rem;
   padding: 3px;
 }
 
@@ -64,22 +66,18 @@ button {
   flex-direction: column;
   border: rgb(0, 255, 0) solid 3px;
   border-radius: 2px;
-  max-width: 15em;
-  min-width: 10em;
+  max-width: 18em;
+  min-width: 13em;
   position: relative;
 }
 
 .channels {
-  margin: 0.5em;
+  margin: 1em;
   cursor: pointer;
 }
 
 .selected {
   background-color: green;
-}
-
-.separator {
-  padding: 3em;
 }
 
 .left .auth {
@@ -99,6 +97,7 @@ button {
   display: flex;
   flex-direction: column;
   padding: 1em;
+  width: 100%;
 }
 
 .flex-row {
@@ -134,7 +133,8 @@ button {
 
 .messages {
   display: block;
-  margin: 0.5em;
+  margin: 1em;
+  font-size: 0.6rem;
 }
 
 textarea:focus,

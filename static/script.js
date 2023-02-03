@@ -35,7 +35,6 @@ async function getChannels() {
 }
 
 
-
 function clickedChannel(channel) {
      let channelElement = document.createElement('div');
      channelElement.classList = 'channels';
@@ -57,7 +56,6 @@ function clickedChannel(channel) {
                     console.log('2 PRIVATE CHANNEL * Logged in?: ', isLoggedIn)
                     channelElement.innerText = channel.channelName + ' \n * Oops! Log in to see'
                     messageHeading.innerText = currentChannel
-
                }
           })
      } else {
@@ -116,6 +114,7 @@ async function postMessage() {
           createMessage(newMessage)
           console.log('it worked')
      }
+     messageInput.value = ''
      // console.log('Status code: ', response.status)
      // console.log('new message ', newMessage)
      // console.log('Data from backend ', messageData)
@@ -136,6 +135,7 @@ async function getMessages(name) {
           createMessage(message)
      })
      console.log('MessageData from server:', messageData)
+
 
 }
 
