@@ -4,7 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /*   border: dashed green 2px;
+  /*   border: dashed rgb(142, 156, 142) 2px;
  */
 }
 body {
@@ -47,6 +47,7 @@ main {
   padding: 0em;
   margin: 2em;
   justify-content: center;
+  height: 80vh;
 }
 
 main > * {
@@ -64,6 +65,8 @@ button {
   border: rgb(0, 255, 0) solid 3px;
   border-radius: 2px;
   max-width: 15em;
+  min-width: 10em;
+  position: relative;
 }
 
 .channels {
@@ -82,6 +85,10 @@ button {
 .left .auth {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .left input,
@@ -110,7 +117,6 @@ button {
   border: rgb(0, 255, 0) solid 3px;
   border-radius: 2px;
   min-width: 18rem;
-  max-height: 30em;
   position: relative;
   overflow-y: auto;
 }
