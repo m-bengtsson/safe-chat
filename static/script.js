@@ -3,7 +3,7 @@ const channels = document.querySelectorAll('.channels')
 const btnSendMessage = document.querySelector('#send-message')
 let messageContainer = document.querySelector('.message-container')
 const messageInput = document.querySelector('#message-input')
-const messageHeading = document.querySelector('.heading')
+const messageHeading = document.querySelector('#message-heading')
 
 let currentChannel = '';
 getChannels()
@@ -50,6 +50,8 @@ function clickedChannel(channel) {
                     getMessages(channel.channelName)
                     console.log('1 PRIVATE CHANNEL * Logged in?: ', isLoggedIn)
                     channelElement.innerText = channel.channelName
+                    messageHeading.innerText = currentChannel
+
                } else {
                     messageContainer.innerHTML = ''
                     console.log('2 PRIVATE CHANNEL * Logged in?: ', isLoggedIn)
@@ -59,6 +61,7 @@ function clickedChannel(channel) {
      } else {
           channelElement.addEventListener('click', () => {
                currentChannel = channel.channelName
+               messageHeading.innerText = currentChannel
                getMessages(channel.channelName)
                console.log(' PUBLICH CHANNEL * Logged in?: ', isLoggedIn)
           })
@@ -138,7 +141,7 @@ function createMessage(message) {
 
      let messageElement = document.createElement('div')
      messageElement.className = 'messages'
-     messageElement.innerText = `${message.timeCreated} * ${message.username} : ${message.text}`
+     messageElement.innerText = `${message.timeCreated} \n ${message.username} : ${message.text}`
      messageContainer.appendChild(messageElement)
 
 }
