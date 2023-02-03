@@ -51,9 +51,9 @@ function clickedChannel(channel) {
                     console.log('1 PRIVATE CHANNEL * Logged in?: ', isLoggedIn)
                     channelElement.innerText = channel.channelName
                } else {
+                    messageContainer.innerHTML = ''
                     console.log('2 PRIVATE CHANNEL * Logged in?: ', isLoggedIn)
                     channelElement.innerText = channel.channelName + ' * Oops! Log in to see'
-                    messageContainer = ''
                }
           })
      } else {
@@ -68,10 +68,22 @@ function clickedChannel(channel) {
 
 
 
+
 function getDate() {
      let newDate = new Date()
-     let dateString = newDate.toDateString()
-     return dateString
+     let datestring = newDate.toDateString()
+
+     let hours = addZero(newDate.getHours())
+     let minutes = addZero(newDate.getMinutes())
+     let seconds = addZero(newDate.getSeconds())
+
+     datestring = `${datestring} ${hours}:${minutes}:${seconds}`
+     // console.log('Datestring output: ', datestring)
+     return datestring
+}
+
+function addZero(num) {
+     return num < 10 ? `0${num}` : num
 }
 
 // POST
@@ -96,7 +108,6 @@ async function postMessage() {
      messageData = await response.json()
      // console.log('type of messagedata', '"' + messageData + '"', typeof messageData)
      if (response.status === 200) {
-          //getMessages('animals')
           createMessage(newMessage)
           console.log('it worked')
      }
