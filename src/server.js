@@ -24,16 +24,13 @@ app.use(express.static(staticPath))
 app.use('/api/users', users)
 app.use('/api/channels', channels)
 
+// POST /login 
 app.post('/login', (req, res) => {
-
      let { username, password } = req.body
 
-     // Finns användaren i databasen?
      if (authenticateUser(username, password)) {
           const userToken = createToken(username)
           res.status(200).send(userToken)
-          console.log(' password', password)
-
      } else {
           res.sendStatus(401)  // Unauthorized
           return

@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
      res.status(200).send(channels)
 })
 
+// Get channeldata
 router.get('/:name', (req, res) => {
 
      const name = req.params.name;
@@ -23,12 +24,12 @@ router.get('/:name', (req, res) => {
      }
 })
 
+// Get messagedata from specific channel
 router.get('/:name/:messages', (req, res) => {
 
      const name = req.params.name;
      const maybeChannel = channels.find(channel => channel.channelName == name)
      const messages = maybeChannel.messages
-     console.log('GET /channels/name/messages', maybeChannel.messages)
      if (messages) {
           res.status(200).send(messages)
      } else {
@@ -36,39 +37,38 @@ router.get('/:name/:messages', (req, res) => {
      }
 })
 
-// Create/post channel
+// Create channel
 router.post('/', (req, res) => {
+     // Ta reda på om användaren är inloggad innan man får skapa kanal
      if (!userIsAuthorized(req)) {
           res.sendStatus(401)
           return
      }
-     // Ta reda på om användaren är inloggad innan man får skapa kanal
+     // Skickar in data till vår databas
      const { channelName, status, messages: [{ timeCreated, username }] } = req.body;
 
      channels.push({ channelName, status, messages: [{ timeCreated, username }] })
+     db.write()
      res.status(200).send(channels)
-     console.log('POST / ',)
 })
 
-// post message
+// Create/send message to specific channel
 router.post('/:name/', (req, res) => {
+
      const name = req.params.name;
      const maybeChannel = channels.find(channel => channel.channelName == name)
-     console.log('Channel', maybeChannel)
      const messages = maybeChannel.messages
      const { timeCreated, username, text } = req.body
 
      if (!isNonEmptyString(text)) {
           res.sendStatus(400)
           return
+
      } else {
-          console.log('messages: ', messages)
           messages.push({ timeCreated, username, text })
           db.write()
           res.status(200).send(messages)
      }
-     console.log('POST / ', text)
-
 })
 
 export default router

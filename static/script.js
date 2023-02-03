@@ -8,34 +8,29 @@ const messageHeading = document.querySelector('#message-heading')
 let currentChannel = '';
 getChannels()
 
+// Get channels 
 async function getChannels() {
      let channelData = null;
      try {
           const response = await fetch('api/channels');
           channelData = await response.json();
           if (response.status !== 200) {
-               console.log('Could not contact server. Status: ' + response.status)
                return
-          } console.log('Data from server:', channelData)
-
+          }
      } catch (error) {
           console.log('Something went wrong when fetching data from the server. GET \n' +
                error.message)
           return
      }
      channelsList.innerHTML = '';
-     // console.log('script.js channelData foreach')
 
      channelData.forEach(channel => {
-          clickedChannel(channel)
-          //console.log('channelData: ', channel.channelName)
-          //console.log('Channel data from server: 'channelData)
-          //console.log('Channel private or public?: ', channel.status)
+          onClickChannel(channel)
      });
 }
 
-
-function clickedChannel(channel) {
+// show fetched channels and adding click event
+function onClickChannel(channel) {
      let channelElement = document.createElement('div');
      channelElement.classList = 'channels';
      channelElement.innerText = channel.channelName
@@ -47,13 +42,11 @@ function clickedChannel(channel) {
                currentChannel = channel.channelName
                if (isLoggedIn) {
                     getMessages(channel.channelName)
-                    console.log('1 PRIVATE CHANNEL * Logged in?: ', isLoggedIn)
                     channelElement.innerText = channel.channelName
                     messageHeading.innerText = currentChannel
 
                } else {
                     messageContainer.innerHTML = ''
-                    console.log('2 PRIVATE CHANNEL * Logged in?: ', isLoggedIn)
                     channelElement.innerText = channel.channelName + ' \n * Oops! Log in to see'
                     messageHeading.innerText = currentChannel
                }
@@ -63,13 +56,10 @@ function clickedChannel(channel) {
                currentChannel = channel.channelName
                messageHeading.innerText = currentChannel
                getMessages(channel.channelName)
-               console.log(' PUBLICH CHANNEL * Logged in?: ', isLoggedIn)
           })
      }
      channelsList.appendChild(channelElement);
 }
-
-
 
 
 function getDate() {
@@ -81,7 +71,7 @@ function getDate() {
      let seconds = addZero(newDate.getSeconds())
 
      datestring = `${datestring} ${hours}:${minutes}:${seconds}`
-     // console.log('Datestring output: ', datestring)
+
      return datestring
 }
 
@@ -89,7 +79,7 @@ function addZero(num) {
      return num < 10 ? `0${num}` : num
 }
 
-// POST
+// POST, create and send message
 async function postMessage() {
      const jwt = localStorage.getItem(JWT_KEY)
      let messageData;
@@ -109,17 +99,13 @@ async function postMessage() {
      }
      const response = await fetch(`/api/channels/${currentChannel}/`, options)
      messageData = await response.json()
-     // console.log('type of messagedata', '"' + messageData + '"', typeof messageData)
+
      if (response.status === 200) {
           createMessage(newMessage)
           console.log('it worked')
      }
      messageInput.value = ''
-     // console.log('Status code: ', response.status)
-     // console.log('new message ', newMessage)
-     // console.log('Data from backend ', messageData)
 }
-
 
 btnSendMessage.addEventListener('click', postMessage)
 
@@ -131,12 +117,8 @@ async function getMessages(name) {
      messageData = await response.json()
 
      messageData.forEach(message => {
-          console.log('Message text: ', message.text)
           createMessage(message)
      })
-     console.log('MessageData from server:', messageData)
-
-
 }
 
 function createMessage(message) {

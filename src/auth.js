@@ -10,12 +10,13 @@ const app = express();
 dotenv.config()
 const users = db.data.users
 
-// Auth functions
+// Authentication functions
 function authenticateUser(username, password) {
      let match = users.find(user => user.username == username)
      if (!match) {
           console.log('> Wrong username\n')
      } else {
+          // Compare hashed passwords
           let correctPassword = bcrypt.compareSync(password, match.password)
           if (correctPassword) {
                console.log('> Welcome user!', match.password)
@@ -26,17 +27,17 @@ function authenticateUser(username, password) {
      return match
 }
 
+// Create jwt token based on username
 function createToken(username) {
      const user = { username: username }
-
      const token = jwt.sign(user, process.env.SECRET, { expiresIn: '1h' })
      user.token = token
-     // console.log('createToken', user)
      return user
 }
 
-
+// Cheack and verify token
 function userIsAuthorized(req) {
+     // Check
      let token = req.body.token || req.query.token
      if (!token) {
           let x = req.headers['authorization']
@@ -45,25 +46,20 @@ function userIsAuthorized(req) {
           }
           token = x.substring(7)
      }
-
-     console.log('Token: ', token)
+     // Verify
      if (token) {
           let decoded
           try {
                decoded = jwt.verify(token, process.env.SECRET)
           } catch (error) {
-               console.log('Catch! Felaktig token!!', error.message)
+               console.log('Catch! incorrect token!!', error.message)
                return false
           }
-          console.log('decoded: ', decoded)
           return decoded
 
      } else {
-          console.log('Ingen token')
           return false
      }
 }
-
-
 
 export { authenticateUser, createToken, userIsAuthorized }

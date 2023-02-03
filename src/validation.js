@@ -3,6 +3,3 @@ function isNonEmptyString(x) {
 }
 
 export { isNonEmptyString }
-
-// Validate:
-// Double username
